@@ -1,0 +1,34 @@
+package com.example.exam.service;
+
+import com.example.exam.io.QuestionReader;
+import com.example.exam.model.Question;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.core.io.ClassPathResource;
+
+import java.io.ByteArrayOutputStream;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class CsvQuestionServiceTest {
+
+    private CsvQuestionService service;
+
+    private ByteArrayOutputStream outContent;
+
+    @BeforeEach
+    void setUp() {
+        QuestionReader reader = new QuestionReader(new ClassPathResource("questions.csv"));
+        outContent = new ByteArrayOutputStream();
+        service = new CsvQuestionService(reader);
+    }
+
+    @Test
+    void testGetAllQuestions() {
+        List<Question> questions = service.getAllQuestions();
+        assertEquals(5, questions.size());
+        assertFalse(questions.get(0).isFreeAnswer());
+        assertTrue(questions.get(4).isFreeAnswer());
+    }
+}
