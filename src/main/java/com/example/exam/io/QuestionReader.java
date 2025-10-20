@@ -2,6 +2,7 @@ package com.example.exam.io;
 
 import com.example.exam.model.Question;
 import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Component
 public class QuestionReader {
 
     private final Resource resource;
