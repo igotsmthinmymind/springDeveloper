@@ -1,7 +1,9 @@
 package com.example.exam.io;
 
 import com.example.exam.model.Question;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -17,8 +19,8 @@ public class QuestionReader {
 
     private final Resource resource;
 
-    public QuestionReader(Resource resource) {
-        this.resource = resource;
+    public QuestionReader(@Value("${exam.csv.path}") String csvPath) {
+        this.resource = new ClassPathResource(csvPath);
     }
 
     public List<Question> readQuestions() throws IOException {

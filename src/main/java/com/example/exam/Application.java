@@ -1,13 +1,14 @@
 package com.example.exam;
 
-import com.example.exam.config.AppConfig;
 import com.example.exam.service.ExamService;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
+@SpringBootApplication
 public class Application {
     public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
         ExamService examService = context.getBean(ExamService.class);
         examService.runExam();
     }

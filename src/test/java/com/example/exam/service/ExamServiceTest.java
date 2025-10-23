@@ -10,7 +10,7 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class ExamServiceTest {
@@ -52,7 +52,6 @@ public class ExamServiceTest {
                 new Question("Q5", Arrays.asList("Correct", "Wrong"))
         );
         when(mockQuestionService.getAllQuestions()).thenReturn(questions);
-
         String input = "Vadim\nShibanov\n1\n1\n1\n1\n1\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
@@ -105,7 +104,7 @@ public class ExamServiceTest {
         );
         when(mockQuestionService.getAllQuestions()).thenReturn(questions);
 
-        String input = "Vadim\nShibanov\n\n"; // пустой ответ
+        String input = "Vadim\nShibanov\n\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         examService.runExam();

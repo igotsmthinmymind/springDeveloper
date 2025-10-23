@@ -4,7 +4,6 @@ import com.example.exam.io.QuestionReader;
 import com.example.exam.model.Question;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.core.io.ClassPathResource;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -20,7 +19,7 @@ public class CsvQuestionServiceTest {
 
     @BeforeEach
     void setUp() {
-        QuestionReader reader = new QuestionReader(new ClassPathResource("questions.csv"));
+        QuestionReader reader = new QuestionReader("questions.csv");
         outContent = new ByteArrayOutputStream();
         service = new CsvQuestionService(reader);
     }
@@ -67,7 +66,7 @@ public class CsvQuestionServiceTest {
 
     @Test
     void testInvalidResourceThrowsException() {
-        QuestionReader reader = new QuestionReader(new ClassPathResource("nonexistent.csv"));
+        QuestionReader reader = new QuestionReader("questions.csv");
         CsvQuestionService badService = new CsvQuestionService(reader);
 
         RuntimeException exception = assertThrows(RuntimeException.class, badService::getAllQuestions);
