@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,18 +17,18 @@ public class ExamService {
 
     private final int passingScore;
 
-    private final Scanner scanner = new Scanner(System.in);
-
-
     public ExamService(QuestionService questionService,
                        @Value("${exam.passing.score}") int passingScore) {
         this.questionService = questionService;
         this.passingScore = passingScore;
     }
 
-    public void runExam() {
+    public void runExam(InputStream inputStream) {
         System.out.println("Welcome to the Student Exam!");
         System.out.print("Please enter your first name: ");
+
+        Scanner scanner = new Scanner(inputStream);
+
         String firstName = scanner.nextLine().trim();
         System.out.print("Please enter your last name: ");
         String lastName = scanner.nextLine().trim();
