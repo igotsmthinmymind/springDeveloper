@@ -5,8 +5,6 @@ import com.example.exam.model.Question;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,12 +13,9 @@ public class CsvQuestionServiceTest {
 
     private CsvQuestionService service;
 
-    private ByteArrayOutputStream outContent;
-
     @BeforeEach
     void setUp() {
         QuestionReader reader = new QuestionReader("questions.csv");
-        outContent = new ByteArrayOutputStream();
         service = new CsvQuestionService(reader);
     }
 
@@ -47,26 +42,8 @@ public class CsvQuestionServiceTest {
     }
 
     @Test
-    void testPrintQuestionsOutput() {
-        PrintStream originalOut = System.out;
-        System.setOut(new PrintStream(outContent));
-
-        try {
-            service.printQuestions();
-            String output = outContent.toString();
-
-            assertTrue(output.contains("Q: What is Java?"));
-            assertTrue(output.contains("1. A programming language"));
-            assertTrue(output.contains("→ Please type your answer."));
-            assertTrue(output.contains("Free answer: What is your name?"));
-        } finally {
-            System.setOut(originalOut);
-        }
-    }
-
-    @Test
     void testInvalidResourceThrowsException() {
-        QuestionReader reader = new QuestionReader("questions.csv");
+        QuestionReader reader = new QuestionReader("nonexistent.csv");
         CsvQuestionService badService = new CsvQuestionService(reader);
 
         RuntimeException exception = assertThrows(RuntimeException.class, badService::getAllQuestions);

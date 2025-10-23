@@ -10,6 +10,6 @@ public class Application {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
         ExamService examService = context.getBean(ExamService.class);
-        examService.runExam();
+        examService.runExam(System.in);
     }
 }

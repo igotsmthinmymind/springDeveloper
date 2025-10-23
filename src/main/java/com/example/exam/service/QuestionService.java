@@ -7,5 +7,4 @@ public interface QuestionService {
 
     List<Question> getAllQuestions();
 
-    void printQuestions();
 }
