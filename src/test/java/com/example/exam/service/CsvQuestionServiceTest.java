@@ -4,11 +4,13 @@ import com.example.exam.io.QuestionReader;
 import com.example.exam.model.Question;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest(properties = "spring.shell.enabled=false")
 public class CsvQuestionServiceTest {
 
     private CsvQuestionService service;

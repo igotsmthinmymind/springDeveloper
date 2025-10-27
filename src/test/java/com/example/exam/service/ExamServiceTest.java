@@ -5,6 +5,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.*;
 import java.util.Arrays;
@@ -13,6 +14,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+@SpringBootTest(properties = "spring.shell.enabled=false")
 public class ExamServiceTest {
 
     private ExamService examService;
@@ -33,7 +35,7 @@ public class ExamServiceTest {
             new Question("Q3", Arrays.asList("Correct", "Wrong")),
             new Question("Q4", Arrays.asList("Correct", "Wrong")),
             new Question("Q5", Arrays.asList("Correct", "Wrong"))
-    );;
+    );
 
     @BeforeEach
     void setUp() {
