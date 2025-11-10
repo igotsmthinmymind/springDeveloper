@@ -3,6 +3,7 @@ package com.example.exam.service;
 import com.example.exam.model.Question;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -53,6 +54,7 @@ public class ExamServiceTest {
     }
 
     @Test
+    @DisplayName("pass the exam when the number of correct answers meets or exceeds the passing threshold")
     void testExamPassesWhenScoreMeetsThreshold() {
         when(mockQuestionService.getAllQuestions()).thenReturn(questions);
 
@@ -67,6 +69,7 @@ public class ExamServiceTest {
     }
 
     @Test
+    @DisplayName("fail the exam when the number of correct answers is below the passing threshold")
     void testExamFailsWhenScoreBelowThreshold() {
         when(mockQuestionService.getAllQuestions()).thenReturn(questions);
 
@@ -81,6 +84,7 @@ public class ExamServiceTest {
     }
 
     @Test
+    @DisplayName("treat a non-empty free-text answer as correct (if applicable in current mock setup)")
     void testFreeAnswerCountsAsCorrectIfNotEmpty() {
         when(mockQuestionService.getAllQuestions()).thenReturn(questions);
 
@@ -95,6 +99,7 @@ public class ExamServiceTest {
     }
 
     @Test
+    @DisplayName("treat an empty free-text answer as incorrect")
     void testFreeAnswerEmptyIsNotCounted() {
         when(mockQuestionService.getAllQuestions()).thenReturn(questions);
 

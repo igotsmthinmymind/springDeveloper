@@ -27,7 +27,7 @@ public class QuestionReader {
                 new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",", -1);
+                String[] parts = line.split(",");
                 String questionText = parts[0];
                 List<String> options = new ArrayList<>(Arrays.asList(parts).subList(1, parts.length));
                 questions.add(new Question(questionText, options));
